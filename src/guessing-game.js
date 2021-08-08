@@ -1,9 +1,12 @@
 class GuessingGame {
-  
-  setRange(min, max) {  
-    this.arr = [];
-    for(let i = min; i <= max; i++) {
-      this.arr.push(i);
+  arr = [];
+  setRange(min, max) {
+    if(this.arr.length === 0) {
+      for(let i = min; i <= max; i++) {
+        this.arr.push(i);
+      }
+    } else {
+      this.arr = this.arr.slice(min, max+1); 
     }
   }
 
@@ -13,15 +16,11 @@ class GuessingGame {
   }
 
   lower() {
-    const min = this.arr[0];
-    const max = this.arr[this.middle];
-    this.setRange(min, max);
+    this.setRange(0, this.middle);
   }
 
   greater() {
-    const min = this.arr[this.middle];
-    const max = this.arr[this.arr.length-1]
-    this.setRange(min, max);
+    this.setRange(this.middle, this.arr.length-1)
   }
 }
 
